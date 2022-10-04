@@ -8,27 +8,23 @@ const productos = [
   {nombre: "Zapato rojo", tipo: "zapato", color: "rojo", img: "./zapato-rojo.jpg"}
 ]
 
-const li = document.getElementsByName("lista-de-productos")
+const li = document.getElementById("lista-de-productos") //Estaba como getElementsByClassName
 const $i = document.querySelector('.input');
 
-for (let i = 0; i < productos.length; i++) {
-  var d = document.createElement("div")
-  d.classList.add("producto")
+function displayProductos(productos){                   //Se crea la funcion a la que se hace referencia
 
-  var ti = document.createElement("p")
-  ti.classList.add("titulo")
-  ti.textContent = productos[i].nombre
-  
-  var imagen = document.createElement("img");
-  imagen.setAttribute('src', productos[i].img);
+  for (let i = 0; i < productos.length; i++) {
 
-  d.appendChild(ti)
-  d.appendChild(imagen)
+    let zapato=`<div class = "producto"> 
+    <p class = "titulo"> ${productos[i].nombre} </p>
+    <img src=${productos[i].img}></img></div>`
+    li.innerHTML += zapato;
+  }//for i
 
-  li.appendChild(d)
-}
+}//function displayProductos
 
-displayProductos(productos)
+displayProductos(productos);
+
 const botonDeFiltro = document.querySelector("button");
 
 botonDeFiltro.onclick = function() {
@@ -53,7 +49,6 @@ botonDeFiltro.onclick = function() {
   
     d.appendChild(ti)
     d.appendChild(imagen)
-  
     li.appendChild(d)
   }
 }
